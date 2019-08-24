@@ -1,0 +1,92 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Image10000.png" type="Texture" id=3]
+[ext_resource path="res://Image10001.png" type="Texture" id=4]
+[ext_resource path="res://Image10002.png" type="Texture" id=5]
+[ext_resource path="res://Image10003.png" type="Texture" id=6]
+[ext_resource path="res://Image10004.png" type="Texture" id=7]
+[ext_resource path="res://Image10005.png" type="Texture" id=8]
+[ext_resource path="res://lil_ballanim1.png" type="Texture" id=9]
+[ext_resource path="res://lil_ball_ded_1.png" type="Texture" id=10]
+[ext_resource path="res://lil_ball_ded_2.png" type="Texture" id=11]
+[ext_resource path="res://lil_ball_ded_3.png" type="Texture" id=12]
+[ext_resource path="res://lil_ball_ded_4.png" type="Texture" id=13]
+[ext_resource path="res://lil_ball_ded_5.png" type="Texture" id=14]
+[ext_resource path="res://lil_ball_ded_6.png" type="Texture" id=15]
+[ext_resource path="res://lil_ball_ded_7.png" type="Texture" id=16]
+[ext_resource path="res://lil_ball_dmg.png" type="Texture" id=17]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "sleep",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 17 ), null ],
+"loop": false,
+"name": "damaged",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "panic",
+"speed": 20.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 14.0098, 14.7076 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 1 )
+detect_radius = 70
+fire_rate = 1.0
+Bullet = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 5
+playing = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 17.8837, 7.88371 )
+enabled = true
+cast_to = Vector2( 0, 11 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.9
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.931816, 0.643505 )
+scale = Vector2( 1.12442, 1.0224 )
+shape = SubResource( 2 )
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.12
+
+[node name="Timer3" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Visibility" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
+visible = false
+shape = SubResource( 3 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
+[connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]
+[connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
+[connection signal="body_exited" from="Visibility" to="." method="_on_Visibility_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

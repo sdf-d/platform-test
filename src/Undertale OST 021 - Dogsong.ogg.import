@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Undertale OST 021 - Dogsong.ogg-c1171bbf219320d3e6e8d41b81ae3870.oggstr"
+
+[deps]
+
+source_file="res://Undertale OST 021 - Dogsong.ogg"
+dest_files=[ "res://.import/Undertale OST 021 - Dogsong.ogg-c1171bbf219320d3e6e8d41b81ae3870.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Undertale – Annoying Dog Theme.ogg-1fc7aebdd404c4436d5e0aba1c7e8ee1.oggstr"
+
+[deps]
+
+source_file="res://Undertale – Annoying Dog Theme.ogg"
+dest_files=[ "res://.import/Undertale – Annoying Dog Theme.ogg-1fc7aebdd404c4436d5e0aba1c7e8ee1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://dog1.png" type="Texture" id=2]
+[ext_resource path="res://dog 2.png" type="Texture" id=3]
+[ext_resource path="res://attack1.png" type="Texture" id=4]
+[ext_resource path="res://attack2.png" type="Texture" id=5]
+[ext_resource path="res://playersleep1.png" type="Texture" id=6]
+[ext_resource path="res://playersleep2.png" type="Texture" id=7]
+[ext_resource path="res://Camera2D.gd" type="Script" id=8]
+[ext_resource path="res://cave_background.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 9 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "sleep",
+"speed": 2.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "double jump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[node name="Dog" type="KinematicBody2D"]
+position = Vector2( 50, 0 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 1.04108, 1.01424 )
+shape = SubResource( 1 )
+
+[node name="dogsprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+playing = true
+flip_h = true
+
+[node name="spin" type="AnimationPlayer" parent="dogsprite"]
+autoplay = "double jump"
+"anims/double jump" = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_left = -180
+limit_top = -270
+limit_right = 1000
+limit_bottom = 90
+editor_draw_limits = true
+script = ExtResource( 8 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -40, 20 )
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 320, 240 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 9 )
+centered = false
+
+[node name="ray_right" type="RayCast2D" parent="."]
+position = Vector2( -0.297073, -0.132568 )
+z_as_relative = false
+enabled = true
+cast_to = Vector2( 13, 0 )
+collide_with_areas = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 11.1682, 0.115982 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 3.0
+[connection signal="animation_finished" from="dogsprite" to="." method="_on_dogsprite_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

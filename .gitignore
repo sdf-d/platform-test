@@ -1,0 +1,11 @@
+# Godot-specific ignores
+src/.import/
+src/export.cfg
+src/export_presets.cfg
+
+# Mono-specific ignores
+src/.mono/
+
+# System/tool-specific ignores
+src/.directory
+src/*~

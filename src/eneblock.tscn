@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://eneblock.gd" type="Script" id=1]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ene_block.png" type="Texture" id=3]
+[ext_resource path="res://ene_block_dmg.png" type="Texture" id=4]
+[ext_resource path="res://ene_block_ded1.png" type="Texture" id=5]
+[ext_resource path="res://ene_block_ded2.png" type="Texture" id=6]
+[ext_resource path="res://ene_block_ded3.png" type="Texture" id=7]
+[ext_resource path="res://ene_block_ded4.png" type="Texture" id=8]
+[ext_resource path="res://ene_block_ded5.png" type="Texture" id=9]
+[ext_resource path="res://ene_block_ded6.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "damaged",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), null ],
+"loop": false,
+"name": "dead",
+"speed": 15.0
+} ]
+
+[sub_resource type="Animation" id=2]
+resource_name = "New Anim"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15.7546, 15.6227 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "New Anim"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.00507359, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+
+[node name="eneblock" type="KinematicBody2D"]
+position = Vector2( 18.0304, -15.8112 )
+script = ExtResource( 1 )
+detect_radius = 50
+fire_rate = 1.0
+Bullet = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+rotation = 6.28319
+frames = SubResource( 1 )
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 6.28319
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.9
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.12
+one_shot = true
+
+[node name="Timer3" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="Visibility" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
+shape = SubResource( 5 )
+
+[node name="Position2D" type="Position2D" parent="."]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
+[connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
+[connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
+[connection signal="body_exited" from="Visibility" to="." method="_on_Visibility_body_exited"]
