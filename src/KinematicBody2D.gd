@@ -58,9 +58,14 @@ func _physics_process(delta):
         motion = move_and_slide(motion, FLOOR)
         if is_on_floor():
            jump_count = 0
-
-        if ray_cast_right.is_colliding():
-           jump_count = 1
+        if ray_cast_right && ray_cast_left:
+           
+            if ray_cast_right.is_colliding():
+               jump_count = 1
+               print("rightcoll")
+            elif ray_cast_left.is_colliding():
+               jump_count = 1
+               print("rightcoll")
 
         if get_slide_count() > 0:
            for i in range(get_slide_count()):
@@ -84,6 +89,8 @@ func _ready():
     anim_player = get_node("dogsprite/spin")
     ray_cast_right = get_node("ray_right")
     ray_cast_left = get_node ("ray_left")
+    print(ray_cast_right)
+    print(ray_cast_left)
 
 func _input(event):
     if jump_count < MAX_JUMP_COUNT and event.is_action_pressed("up"):
