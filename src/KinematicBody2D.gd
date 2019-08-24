@@ -35,7 +35,6 @@ const MAX_JUMP_COUNT = 2
 var motion = Vector2()
 
 func _physics_process(delta):
-	print(motion)
 	motion.y += delta * GRAVITY
 	var friction = false
 
@@ -99,7 +98,6 @@ func _input(event):
 		if !is_on_floor():
 			if ray_cast_left.is_colliding():
 				motion.x = motion.x+WALLJUMP_KNOCKBACK
-				#print(motion.x)
 			elif ray_cast_right.is_colliding():
 				motion.x = motion.x-WALLJUMP_KNOCKBACK
 		
