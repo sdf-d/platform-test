@@ -4,7 +4,6 @@ const FLOOR = Vector2(0, -1)
 const GRAVITY = 400
 const ACCELERATION = 50
 
-
 var motion = Vector2()
 
 var movedir = Vector2(0, 0)

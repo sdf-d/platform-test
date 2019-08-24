@@ -54,7 +54,7 @@ Bullet = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

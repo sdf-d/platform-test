@@ -9,6 +9,8 @@ const MIN_JUMP = -100
 const WALL_SLIDE = 200
 
 const WALLJUMP_KNOCKBACK = 200
+const hit_knockbackb = 250
+const hit_knockbacku = 150
 
 const BARK = preload("res://bark.tscn")
 
@@ -75,6 +77,8 @@ func _physics_process(delta):
 func sleep():
 	hp -= 1
 	get_parent().get_node("ScreenShake").screen_shake(0.3, 3, 50)
+	motion.x = motion.x-hit_knockbackb
+	motion.y = motion.y-hit_knockbacku
 	is_invincible = true
 	$Timer2.start()
 	if hp <= 0:
@@ -98,8 +102,16 @@ func _input(event):
 		if !is_on_floor():
 			if ray_cast_left.is_colliding():
 				motion.x = motion.x+WALLJUMP_KNOCKBACK
+				$ray_right.position.x *= 1
+				get_node("dogsprite").set_flip_h(true)
+				if sign($Position2D.position.x) == -1:
+					$Position2D.position.x *= -1
 			elif ray_cast_right.is_colliding():
 				motion.x = motion.x-WALLJUMP_KNOCKBACK
+				$ray_right.position.x *= -1
+				get_node("dogsprite").set_flip_h(false)
+				if sign($Position2D.position.x) == 1:
+					$Position2D.position.x *= -1
 		
 		
 	elif event.is_action_released("up"):
