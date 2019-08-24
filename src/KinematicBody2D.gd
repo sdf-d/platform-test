@@ -2,11 +2,13 @@ extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
 const GRAVITY = 600
-const ACCELERATION = 50
+const ACCELERATION = 15
 const MAX_SPEED = 100
 const JUMP_HEIGHT = -230
 const MIN_JUMP = -100
 const WALL_SLIDE = 200
+
+const WALLJUMP_KNOCKBACK = 200
 
 const BARK = preload("res://bark.tscn")
 
@@ -33,20 +35,21 @@ const MAX_JUMP_COUNT = 2
 var motion = Vector2()
 
 func _physics_process(delta):
+	print(motion)
 	motion.y += delta * GRAVITY
 	var friction = false
 
 	if is_sleep == false:
 
 		if Input.is_action_pressed("left"):
-			motion.x = max(motion.x-ACCELERATION, -MAX_SPEED)
+			motion.x = -MAX_SPEED if motion.x-ACCELERATION <= -MAX_SPEED else motion.x-ACCELERATION #clamp(motion.x-ACCELERATION, -MAX_SPEED, MAX_SPEED)
 			$ray_right.position.x *= -1
 			get_node("dogsprite").set_flip_h(false)
 			if sign($Position2D.position.x) == 1:
 				$Position2D.position.x *= -1
 		elif Input.is_action_pressed("right"):
-			motion.x +=  ACCELERATION
-			motion.x = min(motion.x+ACCELERATION, MAX_SPEED)
+			#motion.x +=  ACCELERATION
+			motion.x = MAX_SPEED if motion.x+ACCELERATION >= MAX_SPEED else motion.x+ACCELERATION #clamp(motion.x+ACCELERATION, -MAX_SPEED, MAX_SPEED)
 			$ray_right.position.x *= 1
 			get_node("dogsprite").set_flip_h(true)
 			if sign($Position2D.position.x) == -1:
@@ -61,6 +64,7 @@ func _physics_process(delta):
            
 		if ray_cast_right.is_colliding():
 			jump_count = 1
+			
 		elif ray_cast_left.is_colliding():
 			jump_count = 1
 
@@ -92,6 +96,14 @@ func _input(event):
 		motion.y = JUMP_HEIGHT
 		anim_player.play()
 		jump_count += 1
+		if !is_on_floor():
+			if ray_cast_left.is_colliding():
+				motion.x = motion.x+WALLJUMP_KNOCKBACK
+				#print(motion.x)
+			elif ray_cast_right.is_colliding():
+				motion.x = motion.x-WALLJUMP_KNOCKBACK
+		
+		
 	elif event.is_action_released("up"):
 		motion.y = clamp(motion.y, MIN_JUMP, motion.y)
 
