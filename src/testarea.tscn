@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Dog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://Undertale OST 021 - Dogsong.ogg" type="AudioStream" id=4]
 [ext_resource path="res://ScreenShake.gd" type="Script" id=5]
-[ext_resource path="res://destructoblock.tscn" type="PackedScene" id=6]
-[ext_resource path="res://newboss.tscn" type="PackedScene" id=7]
-[ext_resource path="res://eneblock.tscn" type="PackedScene" id=8]
+[ext_resource path="res://pause.tscn" type="PackedScene" id=6]
+[ext_resource path="res://destructoblock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://newboss.tscn" type="PackedScene" id=8]
+[ext_resource path="res://eneblock.tscn" type="PackedScene" id=9]
 
 [node name="testarea" type="Node2D"]
 position = Vector2( 10, -10 )
@@ -43,56 +44,61 @@ script = ExtResource( 5 )
 [node name="Tween" type="Tween" parent="ScreenShake"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="dest_Block" parent="." instance=ExtResource( 6 )]
+[node name="Control2" parent="CanvasLayer" instance=ExtResource( 6 )]
+pause_mode = 2
+visible = false
+
+[node name="dest_Block" parent="." instance=ExtResource( 7 )]
 position = Vector2( 545.945, -96.4972 )
 
-[node name="dest_Block8" parent="." instance=ExtResource( 6 )]
+[node name="dest_Block8" parent="." instance=ExtResource( 7 )]
 position = Vector2( 589.829, -93.2531 )
 
-[node name="dest_Block9" parent="." instance=ExtResource( 6 )]
+[node name="dest_Block9" parent="." instance=ExtResource( 7 )]
 position = Vector2( 300, -210 )
 
-[node name="dest_Block10" parent="." instance=ExtResource( 6 )]
+[node name="dest_Block10" parent="." instance=ExtResource( 7 )]
 position = Vector2( 404.956, -27.7131 )
 
-[node name="dest_Block2" parent="." instance=ExtResource( 6 )]
+[node name="dest_Block2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 418.026, 13.663 )
 
-[node name="dest_Block3" parent="." instance=ExtResource( 6 )]
+[node name="dest_Block3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 460.083, -47.2688 )
 
-[node name="dest_Block4" parent="." instance=ExtResource( 6 )]
+[node name="dest_Block4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 494.746, 16.3865 )
 
-[node name="dest_Block5" parent="." instance=ExtResource( 6 )]
+[node name="dest_Block5" parent="." instance=ExtResource( 7 )]
 position = Vector2( 200.42, -117.227 )
 
-[node name="dest_Block6" parent="." instance=ExtResource( 6 )]
+[node name="dest_Block6" parent="." instance=ExtResource( 7 )]
 position = Vector2( 199.159, -80.0418 )
 
-[node name="dest_Block7" parent="." instance=ExtResource( 6 )]
+[node name="dest_Block7" parent="." instance=ExtResource( 7 )]
 position = Vector2( -7.76068, -17.5409 )
 
-[node name="newboss" parent="." instance=ExtResource( 7 )]
+[node name="newboss" parent="." instance=ExtResource( 8 )]
 position = Vector2( 804.191, -86.0058 )
 
-[node name="eneblock" parent="." instance=ExtResource( 8 )]
+[node name="eneblock" parent="." instance=ExtResource( 9 )]
 position = Vector2( 912.987, -177.158 )
 
-[node name="eneblock2" parent="." instance=ExtResource( 8 )]
+[node name="eneblock2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 699.81, 20.5826 )
 
-[node name="eneblock3" parent="." instance=ExtResource( 8 )]
+[node name="eneblock3" parent="." instance=ExtResource( 9 )]
 position = Vector2( 697.604, -161.721 )
 
-[node name="eneblock4" parent="." instance=ExtResource( 8 )]
+[node name="eneblock4" parent="." instance=ExtResource( 9 )]
 position = Vector2( 906.371, 14.7019 )
 
-[node name="eneblock5" parent="." instance=ExtResource( 8 )]
+[node name="eneblock5" parent="." instance=ExtResource( 9 )]
 position = Vector2( 250, -100 )
 [connection signal="tween_all_completed" from="ScreenShake/Tween" to="ScreenShake" method="_on_Tween_tween_all_completed"]
