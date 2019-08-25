@@ -92,8 +92,8 @@ func shoot(pos):
 		can_shoot = false
 		$ShootTimer.start()
 
-func _draw():
-	draw_circle(Vector2(), detect_radius, vis_color)
+#func _draw():
+	#draw_circle(Vector2(), detect_radius, vis_color)
 
 func _on_Timer2_timeout():
 	if hp > 0:

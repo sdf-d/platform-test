@@ -1,22 +1,21 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Image10000.png" type="Texture" id=3]
-[ext_resource path="res://Image10001.png" type="Texture" id=4]
+[ext_resource path="res://lil_ballanim1.png" type="Texture" id=3]
+[ext_resource path="res://lil_ballanim2.png" type="Texture" id=4]
 [ext_resource path="res://Image10002.png" type="Texture" id=5]
 [ext_resource path="res://Image10003.png" type="Texture" id=6]
 [ext_resource path="res://Image10004.png" type="Texture" id=7]
 [ext_resource path="res://Image10005.png" type="Texture" id=8]
-[ext_resource path="res://lil_ballanim1.png" type="Texture" id=9]
-[ext_resource path="res://lil_ball_ded_1.png" type="Texture" id=10]
-[ext_resource path="res://lil_ball_ded_2.png" type="Texture" id=11]
-[ext_resource path="res://lil_ball_ded_3.png" type="Texture" id=12]
-[ext_resource path="res://lil_ball_ded_4.png" type="Texture" id=13]
-[ext_resource path="res://lil_ball_ded_5.png" type="Texture" id=14]
-[ext_resource path="res://lil_ball_ded_6.png" type="Texture" id=15]
-[ext_resource path="res://lil_ball_ded_7.png" type="Texture" id=16]
-[ext_resource path="res://lil_ball_dmg.png" type="Texture" id=17]
+[ext_resource path="res://lil_ball_ded_1.png" type="Texture" id=9]
+[ext_resource path="res://lil_ball_ded_2.png" type="Texture" id=10]
+[ext_resource path="res://lil_ball_ded_3.png" type="Texture" id=11]
+[ext_resource path="res://lil_ball_ded_4.png" type="Texture" id=12]
+[ext_resource path="res://lil_ball_ded_5.png" type="Texture" id=13]
+[ext_resource path="res://lil_ball_ded_6.png" type="Texture" id=14]
+[ext_resource path="res://lil_ball_ded_7.png" type="Texture" id=15]
+[ext_resource path="res://lil_ball_dmg.png" type="Texture" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -25,12 +24,12 @@ animations = [ {
 "name": "default",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": false,
 "name": "sleep",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 17 ), null ],
+"frames": [ ExtResource( 16 ), null ],
 "loop": false,
 "name": "damaged",
 "speed": 5.0
@@ -54,7 +53,7 @@ Bullet = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
-const GRAVITY = 600
+var GRAVITY = 600
 const ACCELERATION = 15
 const MAX_SPEED = 100
 const JUMP_HEIGHT = -230
@@ -37,6 +37,7 @@ const MAX_JUMP_COUNT = 2
 var motion = Vector2()
 
 func _physics_process(delta):
+	
 	motion.y += delta * GRAVITY
 	var friction = false
 

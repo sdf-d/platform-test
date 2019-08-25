@@ -5,7 +5,7 @@
 [ext_resource path="res://tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://Undertale OST 021 - Dogsong.ogg" type="AudioStream" id=4]
 [ext_resource path="res://ScreenShake.gd" type="Script" id=5]
-[ext_resource path="res://pause.tscn" type="PackedScene" id=6]
+[ext_resource path="res://canvaspause.tscn" type="PackedScene" id=6]
 [ext_resource path="res://destructoblock.tscn" type="PackedScene" id=7]
 [ext_resource path="res://newboss.tscn" type="PackedScene" id=8]
 [ext_resource path="res://eneblock.tscn" type="PackedScene" id=9]
@@ -43,16 +43,7 @@ script = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="ScreenShake"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Control2" parent="CanvasLayer" instance=ExtResource( 6 )]
-pause_mode = 2
-visible = false
+[node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
 
 [node name="dest_Block" parent="." instance=ExtResource( 7 )]
 position = Vector2( 545.945, -96.4972 )
