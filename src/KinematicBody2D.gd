@@ -121,14 +121,18 @@ func _ready():
 	ray_cast_left = get_node ("ray_left")
 	emit_signal("dog_spawned")
 	emit_signal("hp_changed",hp)
+	spawnHPBar()
+
+func spawnHPBar():
 	hpbar = Hpbonebar.instance()
-	print(self.get_parent().get_child_count())
+	#print(self.get_parent().get_child_count())
 	get_node("Camera2D").add_child(hpbar)
-	print(get_node("Camera2D").get_child_count())
+	#print(get_node("Camera2D").get_child_count())
 	hpbar.position.x = 0
 	hpbar.position.y = -13
 	hpbar.z_index = 10
 	hpbar.visible = true
+
 
 func _input(event):
 	if jump_count < MAX_JUMP_COUNT and event.is_action_pressed("up"):

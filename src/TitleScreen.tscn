@@ -79,6 +79,6 @@ position = Vector2( 565.418, 419.212 )
 scale = Vector2( 0.527872, 0.5137 )
 texture = ExtResource( 13 )
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton3" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton3" to="." method="_on_TextureButton3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton3" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton2" to="." method="_on_TextureButton2_pressed"]
