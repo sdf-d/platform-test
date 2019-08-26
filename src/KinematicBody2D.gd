@@ -44,15 +44,19 @@ func _physics_process(delta):
 	if is_sleep == false:
 
 		if Input.is_action_pressed("left"):
+			if is_on_floor():
+				$Particles2D.emitting = true
 			motion.x = -MAX_SPEED if motion.x-ACCELERATION <= -MAX_SPEED else motion.x-ACCELERATION #clamp(motion.x-ACCELERATION, -MAX_SPEED, MAX_SPEED)
-			$ray_right.position.x *= -1
+			$ray_right.position.x *= 1
 			get_node("dogsprite").set_flip_h(false)
 			if sign($Position2D.position.x) == 1:
 				$Position2D.position.x *= -1
 		elif Input.is_action_pressed("right"):
+			if is_on_floor():
+				$Particles2D.emitting = true
 			#motion.x +=  ACCELERATION
 			motion.x = MAX_SPEED if motion.x+ACCELERATION >= MAX_SPEED else motion.x+ACCELERATION #clamp(motion.x+ACCELERATION, -MAX_SPEED, MAX_SPEED)
-			$ray_right.position.x *= 1
+			$ray_right.position.x *= -1
 			get_node("dogsprite").set_flip_h(true)
 			if sign($Position2D.position.x) == -1:
 				$Position2D.position.x *= -1
