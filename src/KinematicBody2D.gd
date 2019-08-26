@@ -130,8 +130,8 @@ func _input(event):
 				get_node("dogsprite").set_flip_h(false)
 				if sign($Position2D.position.x) == 1:
 					$Position2D.position.x *= -1
-		
-		
+	
+	
 	elif event.is_action_released("up"):
 		motion.y = clamp(motion.y, MIN_JUMP, motion.y)
 
