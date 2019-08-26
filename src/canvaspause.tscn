@@ -3,6 +3,7 @@
 [ext_resource path="res://pause.tscn" type="PackedScene" id=1]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+editor/display_folded = true
 layer = 100
 
 [node name="Control" type="Control" parent="."]
