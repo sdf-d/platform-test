@@ -34,6 +34,12 @@ const MAX_JUMP_COUNT = 2
 
 var motion = Vector2()
 
+var hpbar
+var Hpbonebar = preload("res://Hpbonebar.tscn")
+
+signal dog_spawned
+signal hp_changed(new_hp)
+
 func _physics_process(delta):
 	
 	motion.y += delta * GRAVITY
@@ -71,6 +77,7 @@ func _physics_process(delta):
 		else:
 			friction = true
 			motion.x = lerp(motion.x, 0, 0.2)
+			$dogsprite.get_material().set_shader_param("run_state",0)
 
 		motion = move_and_slide(motion, FLOOR)
 		if is_on_floor():
@@ -94,6 +101,7 @@ func _physics_process(delta):
 
 func sleep():
 	hp -= 1
+	emit_signal("hp_changed",hp)
 	get_parent().get_node("ScreenShake").screen_shake(0.3, 3, 50)
 	motion.x = motion.x-hit_knockbackb
 	motion.y = motion.y-hit_knockbacku
@@ -111,6 +119,16 @@ func _ready():
 	anim_player = get_node("dogsprite/spin")
 	ray_cast_right = get_node("ray_right")
 	ray_cast_left = get_node ("ray_left")
+	emit_signal("dog_spawned")
+	emit_signal("hp_changed",hp)
+	hpbar = Hpbonebar.instance()
+	print(self.get_parent().get_child_count())
+	get_node("Camera2D").add_child(hpbar)
+	print(get_node("Camera2D").get_child_count())
+	hpbar.position.x = 0
+	hpbar.position.y = -13
+	hpbar.z_index = 10
+	hpbar.visible = true
 
 func _input(event):
 	if jump_count < MAX_JUMP_COUNT and event.is_action_pressed("up"):
