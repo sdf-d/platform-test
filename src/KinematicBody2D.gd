@@ -16,8 +16,6 @@ const BARK = preload("res://bark.tscn")
 
 var hp = 5
 
-var hitstun = 0
-var health = 1
 var knockdir = Vector2(0, 0)
 
 var is_invincible : bool = false

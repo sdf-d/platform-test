@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Silent_Hill_2_Dog_Ending_Credits_Song_[HQ]_-_YouTu_2019-08-25_06-40-19.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://end.png" type="Texture" id=10]
 [ext_resource path="res://endpress.png" type="Texture" id=11]
 [ext_resource path="res://endhover.png" type="Texture" id=12]
+[ext_resource path="res://1493196180197.png" type="Texture" id=13]
 
 [node name="TitleScreen" type="Node"]
 script = ExtResource( 1 )
@@ -72,6 +73,11 @@ margin_bottom = 158.0
 texture_normal = ExtResource( 10 )
 texture_pressed = ExtResource( 11 )
 texture_hover = ExtResource( 12 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 565.418, 419.212 )
+scale = Vector2( 0.527872, 0.5137 )
+texture = ExtResource( 13 )
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton3" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton3" to="." method="_on_TextureButton3_pressed"]
