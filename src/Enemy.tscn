@@ -29,15 +29,15 @@ animations = [ {
 "name": "sleep",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "panic",
-"speed": 20.0
-}, {
 "frames": [ ExtResource( 16 ), null ],
 "loop": false,
 "name": "damaged",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "panic",
+"speed": 20.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -53,7 +53,7 @@ Bullet = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -83,6 +83,8 @@ visible = false
 shape = SubResource( 3 )
 
 [node name="ShootTimer" type="Timer" parent="."]
+
+[node name="Position2D" type="Position2D" parent="."]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]

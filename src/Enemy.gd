@@ -4,6 +4,8 @@ const FLOOR = Vector2(0, -1)
 const GRAVITY = 400
 const ACCELERATION = 50
 
+const bonep = preload("res://bonepick.tscn")
+
 var motion = Vector2()
 
 var movedir = Vector2(0, 0)
@@ -118,4 +120,7 @@ func _on_Visibility_body_exited(body):
 		target = null
 
 func _on_Timer_timeout():
+	var bonepick = bonep.instance()
+	get_parent().add_child(bonepick)
+	bonepick.position = $Position2D.global_position
 	queue_free()
