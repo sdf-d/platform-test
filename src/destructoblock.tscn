@@ -1,19 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://destructoblock.gd" type="Script" id=1]
-[ext_resource path="res://dest_block.png" type="Texture" id=2]
+[ext_resource path="res://destructoblock.shader" type="Shader" id=2]
+[ext_resource path="res://dest_block.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.8968, 16.1744 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 2 )
+
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), null ],
+"frames": [ ExtResource( 3 ), null ],
 "loop": false,
 "name": "destroy",
 "speed": 60.0
@@ -30,4 +34,5 @@ wait_time = 0.05
 one_shot = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+material = SubResource( 3 )
+frames = SubResource( 4 )
