@@ -47,6 +47,10 @@ func _physics_process(delta):
 			if MAX_SPEED == 200 && is_on_floor():
 				$Particles2D.emitting = true
 				$dogsprite.play("sprint")
+				$dogsprite.get_material().set_shader_param("run_state",-1)
+			else:
+				$dogsprite.get_material().set_shader_param("run_state",0)
+				
 			motion.x = -MAX_SPEED if motion.x-ACCELERATION <= -MAX_SPEED else motion.x-ACCELERATION #clamp(motion.x-ACCELERATION, -MAX_SPEED, MAX_SPEED)
 			$ray_right.position.x *= 1
 			get_node("dogsprite").set_flip_h(false)
@@ -56,6 +60,10 @@ func _physics_process(delta):
 			if MAX_SPEED == 200 && is_on_floor():
 				$Particles2D.emitting = true
 				$dogsprite.play("sprint")
+				$dogsprite.get_material().set_shader_param("run_state",1)
+			else:
+				$dogsprite.get_material().set_shader_param("run_state",0)
+				
 			#motion.x +=  ACCELERATION
 			motion.x = MAX_SPEED if motion.x+ACCELERATION >= MAX_SPEED else motion.x+ACCELERATION #clamp(motion.x+ACCELERATION, -MAX_SPEED, MAX_SPEED)
 			$ray_right.position.x *= -1
