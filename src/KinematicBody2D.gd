@@ -140,6 +140,7 @@ func _input(event):
 		anim_player.play()
 		jump_count += 1
 		if !is_on_floor():
+			jump_count = 2
 			if ray_cast_left.is_colliding():
 				motion.x = motion.x+WALLJUMP_KNOCKBACK
 				$ray_right.position.x *= 1
