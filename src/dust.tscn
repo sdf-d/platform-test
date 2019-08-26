@@ -29,9 +29,11 @@ color_ramp = SubResource( 2 )
 [node name="Particles2D" type="Particles2D"]
 position = Vector2( -0.0897446, 7.8078 )
 rotation = -1.5708
+emitting = false
 amount = 6
+lifetime = 0.5
+one_shot = true
 speed_scale = 1.2
-explosiveness = 0.21
 local_coords = false
 process_material = SubResource( 5 )
 texture = ExtResource( 1 )

@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
-var GRAVITY = 600
-const ACCELERATION = 15
-const MAX_SPEED = 100
+const GRAVITY = 600
+var ACCELERATION = 15
+var MAX_SPEED = 100
 const JUMP_HEIGHT = -230
 const MIN_JUMP = -100
 const WALL_SLIDE = 200
@@ -44,16 +44,18 @@ func _physics_process(delta):
 	if is_sleep == false:
 
 		if Input.is_action_pressed("left"):
-			if is_on_floor():
+			if MAX_SPEED == 200 && is_on_floor():
 				$Particles2D.emitting = true
+				$dogsprite.play("sprint")
 			motion.x = -MAX_SPEED if motion.x-ACCELERATION <= -MAX_SPEED else motion.x-ACCELERATION #clamp(motion.x-ACCELERATION, -MAX_SPEED, MAX_SPEED)
 			$ray_right.position.x *= 1
 			get_node("dogsprite").set_flip_h(false)
 			if sign($Position2D.position.x) == 1:
 				$Position2D.position.x *= -1
 		elif Input.is_action_pressed("right"):
-			if is_on_floor():
+			if MAX_SPEED == 200 && is_on_floor():
 				$Particles2D.emitting = true
+				$dogsprite.play("sprint")
 			#motion.x +=  ACCELERATION
 			motion.x = MAX_SPEED if motion.x+ACCELERATION >= MAX_SPEED else motion.x+ACCELERATION #clamp(motion.x+ACCELERATION, -MAX_SPEED, MAX_SPEED)
 			$ray_right.position.x *= -1
@@ -73,6 +75,13 @@ func _physics_process(delta):
 			
 		elif ray_cast_left.is_colliding():
 			jump_count = 1
+
+		if Input.is_action_pressed("sprint"):
+			ACCELERATION = 30
+			MAX_SPEED = 200
+		else:
+			ACCELERATION = 15
+			MAX_SPEED = 100
 
 			if get_slide_count() > 0:
 				for i in range(get_slide_count()):
