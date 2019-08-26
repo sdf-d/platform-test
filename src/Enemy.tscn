@@ -8,14 +8,14 @@
 [ext_resource path="res://Image10003.png" type="Texture" id=6]
 [ext_resource path="res://Image10004.png" type="Texture" id=7]
 [ext_resource path="res://Image10005.png" type="Texture" id=8]
-[ext_resource path="res://lil_ball_ded_1.png" type="Texture" id=9]
-[ext_resource path="res://lil_ball_ded_2.png" type="Texture" id=10]
-[ext_resource path="res://lil_ball_ded_3.png" type="Texture" id=11]
-[ext_resource path="res://lil_ball_ded_4.png" type="Texture" id=12]
-[ext_resource path="res://lil_ball_ded_5.png" type="Texture" id=13]
-[ext_resource path="res://lil_ball_ded_6.png" type="Texture" id=14]
-[ext_resource path="res://lil_ball_ded_7.png" type="Texture" id=15]
-[ext_resource path="res://lil_ball_dmg.png" type="Texture" id=16]
+[ext_resource path="res://lil_ball_dmg.png" type="Texture" id=9]
+[ext_resource path="res://lil_ball_ded_1.png" type="Texture" id=10]
+[ext_resource path="res://lil_ball_ded_2.png" type="Texture" id=11]
+[ext_resource path="res://lil_ball_ded_3.png" type="Texture" id=12]
+[ext_resource path="res://lil_ball_ded_4.png" type="Texture" id=13]
+[ext_resource path="res://lil_ball_ded_5.png" type="Texture" id=14]
+[ext_resource path="res://lil_ball_ded_6.png" type="Texture" id=15]
+[ext_resource path="res://lil_ball_ded_7.png" type="Texture" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -24,20 +24,20 @@ animations = [ {
 "name": "default",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": false,
-"name": "sleep",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 16 ), null ],
-"loop": false,
-"name": "damaged",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "panic",
 "speed": 20.0
+}, {
+"frames": [ ExtResource( 9 ), null ],
+"loop": false,
+"name": "damaged",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "sleep",
+"speed": 15.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]

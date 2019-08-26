@@ -110,6 +110,9 @@ func _on_Timer3_timeout():
 func _on_ShootTimer_timeout():
 	can_shoot = true
 
+func _on_Visibility_body_entered(body):
+	pass
+
 func _on_Visibility_body_exited(body):
 	if body == target:
 		target = null
