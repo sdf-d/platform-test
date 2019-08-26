@@ -1,39 +1,38 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
-[ext_resource path="res://dog1.png" type="Texture" id=2]
-[ext_resource path="res://dog 2.png" type="Texture" id=3]
-[ext_resource path="res://attack1.png" type="Texture" id=4]
-[ext_resource path="res://attack2.png" type="Texture" id=5]
-[ext_resource path="res://playersleep1.png" type="Texture" id=6]
-[ext_resource path="res://playersleep2.png" type="Texture" id=7]
-[ext_resource path="res://Camera2D.gd" type="Script" id=8]
-[ext_resource path="res://cave_background.png" type="Texture" id=9]
-[ext_resource path="res://dust.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Dog_material_1.tres" type="Material" id=2]
+[ext_resource path="res://dog1.png" type="Texture" id=3]
+[ext_resource path="res://dog 2.png" type="Texture" id=4]
+[ext_resource path="res://attack1.png" type="Texture" id=5]
+[ext_resource path="res://attack2.png" type="Texture" id=6]
+[ext_resource path="res://playersleep1.png" type="Texture" id=7]
+[ext_resource path="res://playersleep2.png" type="Texture" id=8]
+[ext_resource path="res://Camera2D.gd" type="Script" id=9]
+[ext_resource path="res://cave_background.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 9 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "sleep",
 "speed": 2.0
 } ]
 
 [sub_resource type="Animation" id=3]
-resource_name = "double jump"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -57,7 +56,9 @@ scale = Vector2( 1.04108, 1.01424 )
 shape = SubResource( 1 )
 
 [node name="dogsprite" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 flip_h = true
 
@@ -73,7 +74,7 @@ limit_top = -270
 limit_right = 1000
 limit_bottom = 90
 editor_draw_limits = true
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -83,7 +84,7 @@ motion_scale = Vector2( 0.1, 0.1 )
 motion_mirroring = Vector2( 320, 240 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 centered = false
 
 [node name="ray_right" type="RayCast2D" parent="."]
@@ -108,14 +109,5 @@ one_shot = true
 
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 3.0
-
-[node name="Particles2D" parent="." instance=ExtResource( 10 )]
-show_behind_parent = true
-position = Vector2( 0.67757, 7.63728 )
-emitting = false
-lifetime = 0.5
-one_shot = true
-speed_scale = 1.0
-explosiveness = 0.0
 [connection signal="animation_finished" from="dogsprite" to="." method="_on_dogsprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
