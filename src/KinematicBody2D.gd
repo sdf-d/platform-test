@@ -85,10 +85,8 @@ func _physics_process(delta):
 			jump_count = 1
 
 		if Input.is_action_pressed("sprint"):
-			ACCELERATION = 30
 			MAX_SPEED = 200
 		else:
-			ACCELERATION = 15
 			MAX_SPEED = 100
 
 			if get_slide_count() > 0:

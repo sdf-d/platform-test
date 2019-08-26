@@ -15,11 +15,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 9 )
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
 shader_param/run_state = 0
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
@@ -42,7 +42,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -66,15 +66,15 @@ scale = Vector2( 1.04108, 1.01424 )
 shape = SubResource( 1 )
 
 [node name="dogsprite" type="AnimatedSprite" parent="."]
-material = SubResource( 3 )
-frames = SubResource( 4 )
+material = SubResource( 2 )
+frames = SubResource( 3 )
 frame = 1
 playing = true
 flip_h = true
 
 [node name="spin" type="AnimationPlayer" parent="dogsprite"]
 autoplay = "double jump"
-"anims/double jump" = SubResource( 5 )
+"anims/double jump" = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
