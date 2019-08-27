@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://eneblock.gd" type="Script" id=1]
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
@@ -18,15 +18,15 @@ animations = [ {
 "name": "default",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), null ],
-"loop": false,
-"name": "dead",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": false,
 "name": "damaged",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), null ],
+"loop": false,
+"name": "dead",
+"speed": 15.0
 } ]
 
 [sub_resource type="Animation" id=2]
@@ -65,6 +65,25 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
+
+[sub_resource type="OccluderPolygon2D" id=6]
+polygon = PoolVector2Array( -15.6631, -12.9089, -13.2332, -15.7437, 12.4421, -15.9057, 15.3579, -13.5568, 15.6819, 12.7665, 13.0901, 15.7633, -12.9902, 15.7633, -16.068, 13.1714 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "New Anim"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
 
 [node name="eneblock" type="KinematicBody2D"]
 position = Vector2( 18.0304, -15.8112 )
@@ -109,6 +128,13 @@ wait_time = 3.0
 shape = SubResource( 5 )
 
 [node name="Position2D" type="Position2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+rotation = 6.28319
+occluder = SubResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LightOccluder2D"]
+"anims/New Anim" = SubResource( 7 )
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

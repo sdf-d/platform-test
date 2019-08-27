@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
@@ -45,6 +45,9 @@ extents = Vector2( 14.0098, 14.7076 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
+[sub_resource type="OccluderPolygon2D" id=4]
+polygon = PoolVector2Array( -14.0752, -5.76489, -13.4675, 5.67214, -12.1716, 7.53502, -15.3064, 10.2397, -14.0752, 14.5486, -10.3049, 14.7794, -8.7698, 11.7467, -5.93498, 13.2856, -6.22684, 16.0105, 6.7002, 15.5535, 5.97125, 13.5286, 8.56308, 12.2327, 9.697, 11.4228, 10.4702, 14.6255, 13.548, 14.7025, 14.0866, 12.3941, 13.3941, 9.62411, 13.8277, 6.40109, 14.0866, -7.68852, 11.2397, -11.5358, 6.62297, -14.6905, -6.33995, -14.9005, -10.7666, -12.2283, -12.8441, -9.61214 )
+
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
 detect_radius = 70
@@ -53,7 +56,7 @@ Bullet = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 4
+frame = 1
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -85,6 +88,9 @@ shape = SubResource( 3 )
 [node name="ShootTimer" type="Timer" parent="."]
 
 [node name="Position2D" type="Position2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 4 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]

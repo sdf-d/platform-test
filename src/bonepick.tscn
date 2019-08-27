@@ -8,7 +8,9 @@ extents = Vector2( 9.25671, 2.87027 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="bonepick" type="KinematicBody2D" parent="."]
+[node name="bonepick" type="RigidBody2D" parent="."]
+gravity_scale = 12.73
+angular_velocity = 12.0
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="bonepick"]

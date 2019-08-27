@@ -24,6 +24,7 @@ func sleep():
 		motion = Vector2(0,0)
 		$AnimatedSprite.play("destroy")
 		$CollisionShape2D.call_deferred("set_disabled", true)
+		$LightOccluder2D.call_deferred("set_visible", false)
 		$Timer.start()
 		if scale > Vector2(1, 1):
 			get_parent().get_node("ScreenShake").screen_shake(1, 10, 100)

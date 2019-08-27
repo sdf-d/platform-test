@@ -15,6 +15,7 @@ var hit_pos
 
 var spritespin
 var collspin
+var lightspin
 
 export (int) var detect_radius
 
@@ -36,6 +37,7 @@ func _physics_process(delta):
 		update()
 		spritespin.play()
 		collspin.play()
+		lightspin.play()
 		$AnimatedSprite.play("default")
 		if movetimer > 0:
 			movetimer -= 1
@@ -49,6 +51,7 @@ func _physics_process(delta):
 func _ready():
 	spritespin = get_node("AnimatedSprite/AnimationPlayer") 
 	collspin = get_node("CollisionShape2D/AnimationPlayer")
+	lightspin = get_node("LightOccluder2D/AnimationPlayer")
 	movedir = dir.rand()
 	var shape = CircleShape2D.new()
 	shape.radius = detect_radius
@@ -79,6 +82,7 @@ func sleep():
 	$Timer3.start()
 	$AnimatedSprite/AnimationPlayer.set_speed_scale(3)
 	$CollisionShape2D/AnimationPlayer.set_speed_scale(3)
+	$LightOccluder2D/AnimationPlayer.set_speed_scale(3)
 	get_parent().get_node("ScreenShake").screen_shake(0.3, 3, 50)
 	is_sleep = true
 	$AnimatedSprite.play("damaged")
@@ -86,6 +90,7 @@ func sleep():
 		is_sleep = true
 		speed = 70
 		$CollisionShape2D.call_deferred("set_disabled", true)
+		$LightOccluder2D.call_deferred("set_visible", false)
 		movedir = Vector2(0, 1)
 		$AnimatedSprite.play("dead")
 		$Timer.start()
@@ -102,6 +107,7 @@ func _on_Timer3_timeout():
 	movetimer_length = 60
 	$AnimatedSprite/AnimationPlayer.set_speed_scale(1)
 	$CollisionShape2D/AnimationPlayer.set_speed_scale(1)
+	$LightOccluder2D/AnimationPlayer.set_speed_scale(1)
 
 func _on_Visibility_body_entered(body):
 	if target:
