@@ -20,7 +20,7 @@ func _physics_process(delta):
 		$MarginContainer/VBoxContainer/VBoxContainer/TextureButton3.grab_focus()
 
 func _on_TextureButton_pressed():
-	print("buttoooon1")
+	#print("buttoooon1")
 	emit_signal("changeToGameLevel","testarea.tscn")
 	#get_tree().change_scene("Main_in_game.tscn")
 	#get_tree().change_scene("testarea.tscn")
@@ -30,6 +30,6 @@ func _on_TextureButton2_pressed():
 	get_tree().quit()
 
 func _on_TextureButton3_pressed():
-	print("buttoooon2")
+	#print("buttoooon2")
 	emit_signal("changeToGameLevel","testblock.tscn")
 	#get_tree().change_scene("testblock.tscn")

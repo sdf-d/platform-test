@@ -23,7 +23,7 @@ func _ready():
 #func _process(delta):
 #	pass
 func loadLevelFromScene(scenename):
-	print("loadLevelFromScene" , scenename)
+	#print("loadLevelFromScene" , scenename)
 	level1scene = load(scenename)
 	level = level1scene.instance()
 	add_child(level)
