@@ -1,18 +1,39 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://guifl.gd" type="Script" id=1]
 [ext_resource path="res://hpbone.shader" type="Shader" id=2]
 [ext_resource path="res://hpbone.png" type="Texture" id=3]
 [ext_resource path="res://Sprite.gd" type="Script" id=4]
+[ext_resource path="res://crt_test.shader" type="Shader" id=5]
+[ext_resource path="res://Polygon2D.gd" type="Script" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
 shader_param/hp = 0.4
 
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 5 )
+shader_param/screen_width = 1024.0
+shader_param/screen_height = 600.0
+shader_param/BarrelPower = 1.1
+shader_param/color_bleeding = 1.2
+shader_param/bleeding_range_x = 3.0
+shader_param/bleeding_range_y = 3.0
+shader_param/lines_distance = 4.0
+shader_param/scan_size = 2.0
+shader_param/scanline_alpha = 0.9
+shader_param/lines_velocity = 30.0
+
 [node name="guifl" type="CanvasLayer"]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 material = SubResource( 1 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource( 3 )
+polygon = PoolVector2Array( 0, 0, 640, 0, 640, 480, 0, 480 )
+script = ExtResource( 6 )

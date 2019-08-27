@@ -1,13 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://dog_lean.shader" type="Shader" id=2]
 [ext_resource path="res://dog1.png" type="Texture" id=3]
 [ext_resource path="res://dog 2.png" type="Texture" id=4]
-[ext_resource path="res://playersleep1.png" type="Texture" id=5]
-[ext_resource path="res://playersleep2.png" type="Texture" id=6]
-[ext_resource path="res://attack1.png" type="Texture" id=7]
-[ext_resource path="res://attack2.png" type="Texture" id=8]
+[ext_resource path="res://attack1.png" type="Texture" id=5]
+[ext_resource path="res://attack2.png" type="Texture" id=6]
+[ext_resource path="res://playersleep1.png" type="Texture" id=7]
+[ext_resource path="res://playersleep2.png" type="Texture" id=8]
 [ext_resource path="res://Camera2D.gd" type="Script" id=9]
 [ext_resource path="res://cave_background.png" type="Texture" id=10]
 [ext_resource path="res://dust.tscn" type="PackedScene" id=11]
@@ -29,6 +29,11 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
 "name": "sleep",
 "speed": 2.0
 }, {
@@ -36,11 +41,6 @@ animations = [ {
 "loop": true,
 "name": "sprint",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=4]
@@ -57,6 +57,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+void fragment() {
+
+	vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
+	c = vec3(1.0) - c;
+	COLOR.rgb = c;
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+render_priority = 10
+shader = SubResource( 5 )
 
 [node name="Dog" type="KinematicBody2D"]
 position = Vector2( 50, 0 )
@@ -78,6 +92,7 @@ autoplay = "double jump"
 "anims/double jump" = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+material = SubResource( 6 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 limit_left = -180
