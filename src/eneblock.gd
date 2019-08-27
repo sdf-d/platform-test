@@ -37,7 +37,7 @@ func _physics_process(delta):
 		update()
 		spritespin.play()
 		collspin.play()
-		lightspin.play()
+		#lightspin.play()
 		$AnimatedSprite.play("default")
 		if movetimer > 0:
 			movetimer -= 1
