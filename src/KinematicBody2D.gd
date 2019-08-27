@@ -7,6 +7,7 @@ var MAX_SPEED = 100
 const JUMP_HEIGHT = -230
 const MIN_JUMP = -100
 const WALL_SLIDE = 200
+const MAX_HP = 5.0
 
 const WALLJUMP_KNOCKBACK = 200
 const hit_knockbackb = 250
@@ -101,7 +102,7 @@ func _physics_process(delta):
 
 func sleep():
 	hp -= 1
-	emit_signal("hp_changed",hp)
+	emit_signal("hp_changed",hp / MAX_HP)
 	get_parent().get_node("ScreenShake").screen_shake(0.3, 3, 50)
 	motion.x = motion.x-hit_knockbackb
 	motion.y = motion.y-hit_knockbacku
@@ -120,18 +121,23 @@ func _ready():
 	ray_cast_right = get_node("ray_right")
 	ray_cast_left = get_node ("ray_left")
 	emit_signal("dog_spawned")
-	emit_signal("hp_changed",hp)
-	spawnHPBar()
+	#print("dogspawn")
+	
+	#spawnHPBar()
+
+func init():
+	emit_signal("hp_changed", hp / MAX_HP)
 
 func spawnHPBar():
 	hpbar = Hpbonebar.instance()
-	#print(self.get_parent().get_child_count())
-	get_node("Camera2D").add_child(hpbar)
-	#print(get_node("Camera2D").get_child_count())
-	hpbar.position.x = 0
-	hpbar.position.y = -13
-	hpbar.z_index = 10
-	hpbar.visible = true
+
+	add_child(hpbar)
+
+	var barsprite = hpbar.get_child(0)
+	barsprite.position.x = 0
+	barsprite.position.y = -13
+	barsprite.z_index = 10
+	barsprite.visible = true
 
 
 func _input(event):

@@ -31,15 +31,15 @@ animations = [ {
 "name": "sleep",
 "speed": 2.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "sprint",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=4]
@@ -68,6 +68,7 @@ shape = SubResource( 1 )
 [node name="dogsprite" type="AnimatedSprite" parent="."]
 material = SubResource( 2 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 flip_h = true
 

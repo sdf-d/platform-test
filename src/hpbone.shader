@@ -3,8 +3,8 @@ uniform float hp=0.4;
 
 void vertex()
 {
-	VERTEX.x *= 0.3;
-	VERTEX.y *= 0.3;
+	VERTEX.x *= 0.8;
+	VERTEX.y *= 0.8;
 }
 
 void fragment()

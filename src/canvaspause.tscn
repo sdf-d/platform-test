@@ -3,7 +3,6 @@
 [ext_resource path="res://pause.tscn" type="PackedScene" id=1]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-editor/display_folded = true
 layer = 100
 
 [node name="Control" type="Control" parent="."]
@@ -12,4 +11,3 @@ margin_bottom = 40.0
 
 [node name="Control2" parent="." instance=ExtResource( 1 )]
 pause_mode = 2
-visible = false
