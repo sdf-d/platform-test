@@ -32,7 +32,11 @@ export(int) var hp = 3
 
 export(Vector2) var size = Vector2(1, 1)
 
+var b = 0
+
 func _ready():
+	randomize()
+	b = randi() % 10
 	var shape = CircleShape2D.new()
 	shape.radius = detect_radius
 	$Visibility/CollisionShape2D.shape = shape
@@ -121,7 +125,8 @@ func _on_Visibility_body_exited(body):
 		target = null
 
 func _on_Timer_timeout():
-	var bonepick = bonep.instance()
-	get_parent().add_child(bonepick)
-	bonepick.position = $Position2D.global_position
+	for i in range(b):
+		var bonepick = bonep.instance()
+		get_parent().add_child(bonepick)
+		bonepick.position = $Position2D.global_position
 	queue_free()

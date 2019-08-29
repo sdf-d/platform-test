@@ -11,7 +11,7 @@
 shader = ExtResource( 2 )
 shader_param/hp = 0.4
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 5 )
 shader_param/screen_width = 1024.0
 shader_param/screen_height = 600.0
@@ -34,6 +34,7 @@ texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-material = SubResource( 3 )
+visible = false
+material = SubResource( 2 )
 polygon = PoolVector2Array( 0, 0, 640, 0, 640, 480, 0, 480 )
 script = ExtResource( 6 )

@@ -29,15 +29,15 @@ animations = [ {
 "name": "sleep",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 16 ), null ],
-"loop": false,
-"name": "damaged",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "panic",
 "speed": 20.0
+}, {
+"frames": [ ExtResource( 16 ), null ],
+"loop": false,
+"name": "damaged",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -56,7 +56,7 @@ Bullet = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

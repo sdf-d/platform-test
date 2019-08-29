@@ -7,7 +7,7 @@ var MAX_SPEED = 100
 const JUMP_HEIGHT = -230
 const MIN_JUMP = -100
 const WALL_SLIDE = 200
-const MAX_HP = 5.0
+const MAX_HP = 20.0
 
 const WALLJUMP_KNOCKBACK = 200
 const hit_knockbackb = 250
@@ -15,7 +15,7 @@ const hit_knockbacku = 150
 
 const BARK = preload("res://bark.tscn")
 
-var hp = 5
+var hp = 20
 
 var knockdir = Vector2(0, 0)
 
@@ -99,6 +99,9 @@ func _physics_process(delta):
 				for i in range(get_slide_count()):
 					if "Enemy" in get_slide_collision(i).collider.name:
 						sleep()
+					if "bonepick" in get_slide_collision(i).collider.name:
+						hp += 1
+						emit_signal("hp_changed",hp / MAX_HP)
 
 func sleep():
 	hp -= 1
