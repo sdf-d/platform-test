@@ -2,7 +2,7 @@
 
 [ext_resource path="res://bonepick.gd" type="Script" id=1]
 [ext_resource path="res://hpbone.png" type="Texture" id=2]
-[ext_resource path="res://sparkle.png" type="Texture" id=3]
+[ext_resource path="res://sparkletest.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.05024, 1.61004 )
@@ -27,7 +27,10 @@ hue_variation_random = 1.0
 anim_speed = 1.0
 
 [node name="bonepick" type="RigidBody2D"]
-gravity_scale = 12.73
+mass = 0.102041
+gravity_scale = 5.1
+contacts_reported = 5
+contact_monitor = true
 angular_velocity = 12.0
 script = ExtResource( 1 )
 
@@ -35,7 +38,7 @@ script = ExtResource( 1 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="bonepick" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -46,3 +49,4 @@ process_material = SubResource( 3 )
 texture = ExtResource( 3 )
 
 [node name="Node2D" type="Node2D" parent="."]
+[connection signal="body_entered" from="." to="." method="_on_bonepick_body_entered"]

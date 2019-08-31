@@ -99,7 +99,8 @@ func _physics_process(delta):
 				for i in range(get_slide_count()):
 					if "Enemy" in get_slide_collision(i).collider.name:
 						sleep()
-					if "bonepick" in get_slide_collision(i).collider.name:
+					elif "bonepick" in get_slide_collision(i).collider.name:
+						$Particles2D.emitting = true
 						hp += 1
 						emit_signal("hp_changed",hp / MAX_HP)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://lil_ball_ded_6.png" type="Texture" id=14]
 [ext_resource path="res://lil_ball_ded_7.png" type="Texture" id=15]
 [ext_resource path="res://lil_ball_dmg.png" type="Texture" id=16]
+[ext_resource path="res://dust.tscn" type="PackedScene" id=17]
+[ext_resource path="res://slpdust.tscn" type="PackedScene" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -56,7 +58,7 @@ Bullet = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
+frame = 4
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -91,6 +93,12 @@ shape = SubResource( 3 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 4 )
+
+[node name="Particles2D" parent="." instance=ExtResource( 17 )]
+show_behind_parent = true
+position = Vector2( 0.830376, 14.4327 )
+
+[node name="Particles2D2" parent="." instance=ExtResource( 18 )]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]

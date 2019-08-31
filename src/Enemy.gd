@@ -51,6 +51,7 @@ func sleep():
 	is_sleep = true
 	$AnimatedSprite.play("damaged")
 	if hp <= 0:
+		$Particles2D2.emitting = true
 		is_sleep = true
 		motion = Vector2(0,0)
 		speed = 20
@@ -85,6 +86,9 @@ func _physics_process(delta):
 	if $RayCast2D.is_colliding() == false:
 		direction = direction * -1
 		$RayCast2D.position.x *= -1
+
+	if speed == 100:
+		$Particles2D.emitting = true
 
 	if get_slide_count() > 0:
 		for i in range (get_slide_count()):
@@ -129,4 +133,5 @@ func _on_Timer_timeout():
 		var bonepick = bonep.instance()
 		get_parent().add_child(bonepick)
 		bonepick.position = $Position2D.global_position
+	$Particles2D2.emitting = false
 	queue_free()

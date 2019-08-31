@@ -17,6 +17,10 @@ var spritespin
 var collspin
 var lightspin
 
+var b = 0
+
+const bonep = preload("res://bonepick.tscn")
+
 export (int) var detect_radius
 
 export (float) var fire_rate
@@ -33,6 +37,8 @@ var laser_color = Color(.867, .91, .247, 0.1)
 
 func _physics_process(delta):
 	movement_loop()
+	randomize()
+	b = randi() % 10
 	if is_sleep == false:
 		update()
 		spritespin.play()
@@ -87,6 +93,7 @@ func sleep():
 	is_sleep = true
 	$AnimatedSprite.play("damaged")
 	if hp <= 0:
+		$Particles2D2.emitting = true
 		is_sleep = true
 		speed = 70
 		$CollisionShape2D.call_deferred("set_disabled", true)
@@ -96,6 +103,11 @@ func sleep():
 		$Timer.start()
 
 func _on_Timer_timeout():
+	for i in range(b):
+		var bonepick = bonep.instance()
+		get_parent().add_child(bonepick)
+		bonepick.position = $Position2D.global_position
+	$Particles2D2.emitting = false
 	queue_free()
 
 func _on_Timer2_timeout():

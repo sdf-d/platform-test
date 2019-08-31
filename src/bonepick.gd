@@ -16,5 +16,6 @@ func _physics_process(delta):
 func _ready():
 	pass
 
-func pickup():
-	pass
+func _on_bonepick_body_entered(body):
+	if "Dog" in body.name:
+		queue_free()

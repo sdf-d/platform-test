@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://sparkletest.png" type="Texture" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=5]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.135417, 0.359375, 0.619792, 0.802083, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.957031, 0.906154, 0.706558, 1, 1, 0.736176, 0.0351563, 1, 0.996078, 0.0705882, 0, 1, 0.34375, 0.0228271, 0.0228271, 0.520548, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 1
+emission_sphere_radius = 3.35
+flag_disable_z = true
+angular_velocity = 295.48
+angular_velocity_random = 0.28
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 41.74
+radial_accel = 59.13
+radial_accel_random = 0.57
+tangential_accel = 100.0
+tangential_accel_random = 1.0
+color_ramp = SubResource( 8 )
+hue_variation = 0.49
+hue_variation_random = 1.0
+anim_speed = 1.0
+
+[node name="Particles2D2" type="Particles2D"]
+material = SubResource( 5 )
+emitting = false
+amount = 15
+lifetime = 0.8
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+process_material = SubResource( 6 )
+texture = ExtResource( 1 )
