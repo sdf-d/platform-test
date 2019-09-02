@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://bulletgrad.tres" type="Texture" id=1]
+[ext_resource path="res://slashp.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=2]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0.0736332, 279.576 ), 0.0, 0.0, 0, 0, Vector2( 1, -75.24 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="Curve" id=6]
+max_value = 100.0
+_data = [ Vector2( 0.0130565, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="Curve" id=8]
+max_value = 2.0
+_data = [ Vector2( 0, 2 ), 0.0, 0.0, 0, 0, Vector2( 0.525629, 1.77 ), 0.0, 0.0, 0, 0, Vector2( 0.968305, 1.2068 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 2
+emission_box_extents = Vector3( 6, 6, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -120, 0 )
+angular_velocity = 162.78
+angular_velocity_curve = SubResource( 3 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping_curve = SubResource( 7 )
+scale_curve = SubResource( 9 )
+color_ramp = ExtResource( 1 )
+anim_speed = 1.0
+
+[node name="Particles2D" type="Particles2D"]
+material = SubResource( 1 )
+amount = 30
+process_material = SubResource( 10 )
+texture = ExtResource( 2 )

@@ -4,10 +4,10 @@
 [ext_resource path="res://dog_lean.shader" type="Shader" id=2]
 [ext_resource path="res://dog1.png" type="Texture" id=3]
 [ext_resource path="res://dog 2.png" type="Texture" id=4]
-[ext_resource path="res://playersleep1.png" type="Texture" id=5]
-[ext_resource path="res://playersleep2.png" type="Texture" id=6]
-[ext_resource path="res://attack1.png" type="Texture" id=7]
-[ext_resource path="res://attack2.png" type="Texture" id=8]
+[ext_resource path="res://attack1.png" type="Texture" id=5]
+[ext_resource path="res://attack2.png" type="Texture" id=6]
+[ext_resource path="res://playersleep1.png" type="Texture" id=7]
+[ext_resource path="res://playersleep2.png" type="Texture" id=8]
 [ext_resource path="res://Camera2D.gd" type="Script" id=9]
 [ext_resource path="res://cave_background.png" type="Texture" id=10]
 [ext_resource path="res://dust.tscn" type="PackedScene" id=11]
@@ -28,20 +28,20 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "sleep",
-"speed": 2.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "sprint",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "attack",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "sleep",
+"speed": 2.0
 } ]
 
 [sub_resource type="Animation" id=4]
@@ -107,7 +107,6 @@ shape = SubResource( 1 )
 [node name="dogsprite" type="AnimatedSprite" parent="."]
 material = SubResource( 2 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 flip_h = true
 
@@ -164,7 +163,6 @@ wait_time = 3.0
 [node name="Particles2D" parent="." instance=ExtResource( 11 )]
 show_behind_parent = true
 position = Vector2( 0.67757, 7.63728 )
-speed_scale = 1.0
 
 [node name="Light2D" type="Light2D" parent="."]
 enabled = false

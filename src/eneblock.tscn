@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://eneblock.gd" type="Script" id=1]
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://ene_block_ded5.png" type="Texture" id=9]
 [ext_resource path="res://ene_block_ded6.png" type="Texture" id=10]
 [ext_resource path="res://slpdust.tscn" type="PackedScene" id=11]
+[ext_resource path="res://maglitter.tscn" type="PackedScene" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -19,15 +20,15 @@ animations = [ {
 "name": "default",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), null ],
-"loop": false,
-"name": "dead",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": false,
 "name": "damaged",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), null ],
+"loop": false,
+"name": "dead",
+"speed": 15.0
 } ]
 
 [sub_resource type="Animation" id=2]
@@ -139,6 +140,9 @@ occluder = SubResource( 6 )
 "anims/New Anim" = SubResource( 7 )
 
 [node name="Particles2D2" parent="." instance=ExtResource( 11 )]
+
+[node name="Particles2D" parent="." instance=ExtResource( 12 )]
+local_coords = false
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

@@ -1,39 +1,52 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://dust.png" type="Texture" id=1]
+[ext_resource path="res://firetest.png" type="Texture" id=1]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.229167, 0.572917, 0.90625, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0.606934, 0.606934, 0.606934, 0.771873, 0.303223, 0.303223, 0.303223, 0.407872, 0.52549, 0.52549, 0.52549, 0.054902, 1, 1, 1, 0 )
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.00520833, 0.229167, 0.5, 0.625, 0.786458, 0.994792, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 0.643137, 0.643137, 0.643137, 0.694118, 0.580392, 0.580392, 0.580392, 0.494118, 0, 0, 0, 0, 0.52549, 0.52549, 0.52549, 0.054902, 1, 1, 1, 0 )
 
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.996263, 0.6958 ), -0.993956, 0.0, 0, 0 ]
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0.6199 ), 0.0, 0.0, 0, 0, Vector2( 0.409135, 0.8597 ), 0.0, 0.0, 0, 0, Vector2( 0.996263, 0.4285 ), -0.993956, 0.0, 0, 0 ]
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 1
 emission_sphere_radius = 3.0
 flag_disable_z = true
-initial_velocity = 8.7
+initial_velocity = 7.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+linear_accel = 6.96
+radial_accel = 5.22
+tangential_accel = 3.48
 damping = 7.83
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
+scale = 1.5
+scale_random = 1.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+anim_speed = 1.0
 
 [node name="Particles2D" type="Particles2D"]
+material = SubResource( 1 )
 position = Vector2( -0.0897446, 7.8078 )
 rotation = -1.5708
 emitting = false
 amount = 6
-lifetime = 0.5
+lifetime = 0.2
 one_shot = true
-speed_scale = 1.2
+randomness = 0.14
 local_coords = false
-process_material = SubResource( 5 )
+process_material = SubResource( 6 )
 texture = ExtResource( 1 )

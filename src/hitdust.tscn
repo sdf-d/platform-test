@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://bulletgrad.tres" type="Texture" id=1]
+[ext_resource path="res://firetest.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=2]
+max_value = 2.0
+_data = [ Vector2( 0, 1.9768 ), 0.0, 0.647254, 0, 0, Vector2( 0.50233, 0.9384 ), 2.20327, 2.20327, 0, 0, Vector2( 0.977624, 0.3576 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 3.23
+flag_align_y = true
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 78.26
+angular_velocity = 50.09
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = 19.13
+scale_curve = SubResource( 3 )
+color_ramp = ExtResource( 1 )
+anim_speed = 1.0
+
+[node name="Particles2D" type="Particles2D"]
+material = SubResource( 1 )
+emitting = false
+amount = 30
+lifetime = 0.3
+one_shot = true
+process_material = SubResource( 4 )
+texture = ExtResource( 2 )
