@@ -72,7 +72,7 @@ func movement_loop():
 func shoot(pos):
 	var b = Bullet.instance()
 	var a = (pos - global_position).angle()
-	b.start(global_position, a + rand_range(-0.01, 0.01))
+	b.start($Position2D.global_position + Vector2(-16.0,16.0), a + rand_range(-0.01, 0.01))
 	get_parent().add_child(b)
 	can_shoot = false
 	$ShootTimer.start()

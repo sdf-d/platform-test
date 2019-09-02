@@ -88,7 +88,6 @@ tracks/0/keys = {
 }
 
 [node name="eneblock" type="KinematicBody2D"]
-position = Vector2( 18.0304, -15.8112 )
 script = ExtResource( 1 )
 detect_radius = 50
 fire_rate = 1.0
