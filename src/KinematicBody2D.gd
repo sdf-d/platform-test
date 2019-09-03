@@ -36,7 +36,7 @@ const MAX_JUMP_COUNT = 2
 var motion = Vector2()
 
 var hpbar
-var Hpbonebar = preload("res://Hpbonebar.tscn")
+var hpbonebar = preload("res://hpbonebar.tscn")
 
 signal dog_spawned
 signal hp_changed(new_hp)
@@ -135,7 +135,7 @@ func init():
 	emit_signal("hp_changed", hp / MAX_HP)
 
 func spawnHPBar():
-	hpbar = Hpbonebar.instance()
+	hpbar = hpbonebar.instance()
 
 	add_child(hpbar)
 
