@@ -2,14 +2,14 @@ extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
 const GRAVITY = 600
-var ACCELERATION = 15
+var ACCELERATION = 12
 var MAX_SPEED = 100
 const JUMP_HEIGHT = -230
 const MIN_JUMP = -100
 const WALL_SLIDE = 200
 const MAX_HP = 20.0
 
-const WALLJUMP_KNOCKBACK = 200
+const WALLJUMP_KNOCKBACK = 170
 const hit_knockbackb = 250
 const hit_knockbacku = 150
 
@@ -49,7 +49,8 @@ func _physics_process(delta):
 	if is_sleep == false:
 
 		if Input.is_action_pressed("left"):
-			if MAX_SPEED == 200 && is_on_floor():
+			$dogsprite.play("walk")
+			if MAX_SPEED == 170 && is_on_floor():
 				$Particles2D.emitting = true
 				$dogsprite.play("sprint")
 				$dogsprite.get_material().set_shader_param("run_state",-1)
@@ -62,7 +63,8 @@ func _physics_process(delta):
 			if sign($Position2D.position.x) == 1:
 				$Position2D.position.x *= -1
 		elif Input.is_action_pressed("right"):
-			if MAX_SPEED == 200 && is_on_floor():
+			$dogsprite.play("walk")
+			if MAX_SPEED == 170 && is_on_floor():
 				$Particles2D.emitting = true
 				$dogsprite.play("sprint")
 				$dogsprite.get_material().set_shader_param("run_state",1)
@@ -91,13 +93,13 @@ func _physics_process(delta):
 			jump_count = 1
 
 		if Input.is_action_pressed("sprint"):
-			MAX_SPEED = 200
+			MAX_SPEED = 170
 		else:
 			MAX_SPEED = 100
 
 			if get_slide_count() > 0:
 				for i in range(get_slide_count()):
-					if "Enemy" in get_slide_collision(i).collider.name:
+					if "Enemy" && "firetrap" in get_slide_collision(i).collider.name:
 						sleep()
 					elif "bonepick" in get_slide_collision(i).collider.name:
 						$Particles2D.emitting = true

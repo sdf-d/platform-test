@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Gabe the dog - 1812 Overture (Tchaikovsky).ogg-2ee0b23237187ac62b63d4974130edb6.oggstr"
+
+[deps]
+
+source_file="res://Gabe the dog - 1812 Overture (Tchaikovsky).ogg"
+dest_files=[ "res://.import/Gabe the dog - 1812 Overture (Tchaikovsky).ogg-2ee0b23237187ac62b63d4974130edb6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

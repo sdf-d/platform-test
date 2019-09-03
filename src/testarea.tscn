@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Dog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://eneblock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://cave_background.png" type="Texture" id=9]
 [ext_resource path="res://fireparticle.tscn" type="PackedScene" id=10]
+[ext_resource path="res://firetrap.tscn" type="PackedScene" id=11]
 
 [node name="testarea" type="Node2D"]
 position = Vector2( 10, -10 )
@@ -32,6 +33,7 @@ tile_data = PoolIntArray( -589831, 22, 0, -589830, 22, 0, -589829, 22, 0, -58982
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+autoplay = true
 
 [node name="Enemy2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 430, -204.5 )
@@ -134,6 +136,8 @@ texture = ExtResource( 9 )
 
 [node name="Particles2D" parent="." instance=ExtResource( 10 )]
 position = Vector2( 221.823, 62.7536 )
-amount = 30
 local_coords = false
+
+[node name="firetrap" parent="." instance=ExtResource( 11 )]
+position = Vector2( 168.889, -68.2745 )
 [connection signal="tween_all_completed" from="ScreenShake/Tween" to="ScreenShake" method="_on_Tween_tween_all_completed"]

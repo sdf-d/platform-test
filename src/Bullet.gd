@@ -16,10 +16,10 @@ func _physics_process(delta):
 
 
 func _on_Bullet_body_entered(body):
-	get_parent().add_child(dust)
-	dust.position = $Position2D.global_position
-	dust.emitting = true
 	if !"eneblock" in body.name:
+		get_parent().add_child(dust)
+		dust.position = $Position2D.global_position
+		dust.emitting = true
 		if "Dog" in body.name:
 			body.sleep()
 		queue_free()

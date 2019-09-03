@@ -51,8 +51,8 @@ func _physics_process(delta):
 			movedir = dir.rand()
 			movetimer = movetimer_length
 		if target:
-				if can_shoot:
-					shoot(target.position)
+			if can_shoot:
+				shoot(target.position)
 
 func _ready():
 	spritespin = get_node("AnimatedSprite/AnimationPlayer") 
