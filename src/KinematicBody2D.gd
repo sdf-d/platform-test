@@ -29,6 +29,10 @@ var is_barking = false
 
 var ray_cast_right
 var ray_cast_left
+var slope1
+var slope2
+var onslopeup
+var onslopedown
 
 var jump_count = 0
 const MAX_JUMP_COUNT = 2
@@ -42,6 +46,8 @@ signal dog_spawned
 signal hp_changed(new_hp)
 
 func _physics_process(delta):
+	
+	#search_slope()
 	
 	motion.y += delta * GRAVITY
 	var friction = false
@@ -98,6 +104,14 @@ func _physics_process(delta):
 			MAX_SPEED = 100
 
 			if get_slide_count() > 0:
+				var collision = get_slide_collision(0)
+				var normal = collision.normal
+				var angleDelta 
+				if abs(normal.normalized().x) > 0.7:
+					 angleDelta = normal.angle() - (rotation - PI * .5)
+				else:
+					angleDelta = -rotation
+				rotation = angleDelta + rotation
 				for i in range(get_slide_count()):
 					if "Enemy" && "firetrap" in get_slide_collision(i).collider.name:
 						sleep()
@@ -110,6 +124,7 @@ func sleep():
 	hp -= 1
 	emit_signal("hp_changed",hp / MAX_HP)
 	get_parent().get_node("ScreenShake").screen_shake(0.3, 3, 50)
+	$dogsprite.play("damaged")
 	motion.x = motion.x-hit_knockbackb
 	motion.y = motion.y-hit_knockbacku
 	is_invincible = true
@@ -125,11 +140,28 @@ func _ready():
 	set_process_input(true)
 	anim_player = get_node("dogsprite/spin")
 	ray_cast_right = get_node("ray_right")
-	ray_cast_left = get_node ("ray_left")
+	ray_cast_left = get_node("ray_left")
+	slope1 = get_node("slope1")
+	slope2 = get_node("slope2")
 	emit_signal("dog_spawned")
 	#print("dogspawn")
 	
 	#spawnHPBar()
+
+
+#func search_slope():
+	if slope1.is_colliding() == true && slope2.is_colliding() == false:
+		onslopedown = true
+		print("going down a slope")
+		$dogsprite.rotation = 45
+	elif slope2.is_colliding() == true && slope1.is_colliding() == false:
+		onslopeup = true
+		print("going up a slope")
+		$dogsprite.rotation = -45
+	else:
+		$dogsprite.rotation = 0
+		onslopedown = false
+		onslopeup = false
 
 func init():
 	emit_signal("hp_changed", hp / MAX_HP)
@@ -180,6 +212,9 @@ func _input(event):
 			bark.set_bark_direction(-1)
 		get_parent().add_child(bark)
 		bark.position = $Position2D.global_position
+	
+	if Input.is_action_pressed("down"):
+		$dogsprite.play("crouchidle")
 
 func _on_Timer_timeout():
 	get_tree().change_scene("TitleScreen.tscn")
